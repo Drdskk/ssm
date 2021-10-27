@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cql</groupId>
+    <artifactId>ssm-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--(聚合)管理工程列表-->
+    <modules>
+        <module>../ssm-entity</module>
+        <module>../ssm-mapper</module>
+        <module>../ssm-service</module>
+        <module>../ssm-controller</module>
+    </modules>
+
+    <!--创建多环境-->
+    <!--    <profiles>
+            <profile>
+                &lt;!&ndash;环境名&ndash;&gt;
+                <id>dev-env</id>
+                &lt;!&ndash;属性&ndash;&gt;
+                <properties/>
+                &lt;!&ndash;是否默认&ndash;&gt;
+                <activation>
+                    <activeByDefault/>
+                </activation>
+            </profile>
+
+            <profile>
+                &lt;!&ndash;环境名&ndash;&gt;
+                <id>pro-env</id>
+                &lt;!&ndash;。。。。。。&ndash;&gt;
+            </profile>
+        </profiles>-->
+
+    <!--设置版本属性-->
+    <properties>
+        <!--项目依赖-->
+        <entity.version>1.0-SNAPSHOT</entity.version>
+        <mapper.version>1.0-SNAPSHOT</mapper.version>
+        <service.version>1.0-SNAPSHOT</service.version>
+        <!--spring-->
+        <spring.version>5.3.10</spring.version>
+        <!--mybatis-->
+        <mybatis.version>3.4.5</mybatis.version>
+        <mybatis.spring.version>1.3.1</mybatis.spring.version>
+        <!--数据库驱动-->
+        <mysql.version>5.1.6</mysql.version>
+        <!--数据源-->
+        <druid.version>1.2.6</druid.version>
+        <!--aspectj-->
+        <aspectjweaver>1.8.7</aspectjweaver>
+        <!--json-->
+        <jackson.databind.version>2.13.0</jackson.databind.version>
+        <!--jsp，servlet-->
+        <javax.servlet.version>3.1.0</javax.servlet.version>
+        <javax.servlet.jsp.version>2.3.0</javax.servlet.jsp.version>
+        <!--测试-->
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--entity依赖-->
+            <dependency>
+                <groupId>com.cql</groupId>
+                <artifactId>ssm-entity</artifactId>
+                <version>${entity.version}</version>
+            </dependency>
+
+            <!--mapper依赖-->
+            <dependency>
+                <groupId>com.cql</groupId>
+                <artifactId>ssm-mapper</artifactId>
+                <version>${mapper.version}</version>
+            </dependency>
+
+            <!--service依赖-->
+            <dependency>
+                <groupId>com.cql</groupId>
+                <artifactId>ssm-service</artifactId>
+                <version>${service.version}</version>
+            </dependency>
+
+            <!--spring配置-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--spring继承web-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!--spring-mvc-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!--mybatis配置-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!--事务管理-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver}</version>
+            </dependency>
+
+            <!--json-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.databind.version}</version>
+            </dependency>
+
+            <!--jsp,servlet-->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>javax.servlet.jsp-api</artifactId>
+                <version>${javax.servlet.jsp.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--测试-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!--配置资源文件属性引用-->
+        <!--        <resources>
+                    <resource>
+                        <directory>${project.basedir}/src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>-->
+    </build>
+</project>
