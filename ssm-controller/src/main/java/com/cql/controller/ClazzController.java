@@ -15,10 +15,14 @@ public class ClazzController {
     @Autowired
     private ClazzService clazzService;
 
-    @RequestMapping("/findAll")
+    /**
+     * 查询并 返回所有班级信息
+     * @return
+     */
+    @RequestMapping("/getAll")
     @ResponseBody
-    public List<Clazz> findAll(){
-        List<Clazz> clazzList=clazzService.findAll();
+    public List<Clazz> getAll(){
+        List<Clazz> clazzList=clazzService.getAll();
         return clazzList;
     }
 }

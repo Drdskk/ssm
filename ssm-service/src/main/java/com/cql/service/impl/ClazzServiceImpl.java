@@ -13,8 +13,8 @@ public class ClazzServiceImpl implements ClazzService {
     @Autowired
     private ClazzMapper clazzMapper;
 
-    public List<Clazz> findAll(){
-        List<Clazz> clazzList=clazzMapper.findAll();
+    public List<Clazz> getAll(){
+        List<Clazz> clazzList=clazzMapper.getAll();
         return clazzList;
     }
 }

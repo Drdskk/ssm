@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cql.mapper.TeacherMapper">
+    <resultMap id="teacherMapper" type="teacher">
+        <id column="teacher_id" property="teacher_id"/>
+        <result column="teacher_name" property="teacher_name"/>
+        <collection property="courseList" ofType="course">
+            <id column="course_id" property="course_id"/>
+            <result column="course_name" property="course_name"/>
+            <result column="teacher_id" property="teacher_id"/>
+        </collection>
+    </resultMap>
+
+
+    <!--添加一个老师-->
+    <insert id="addOne" parameterType="teacher">
+        INSERT INTO teacher(teacher_name)
+        VALUES(#{teacher_name})
+    </insert>
+
+    <!--删除一个老师-->
+    <delete id="delOne" parameterType="Integer">
+        DELETE FROM teacher
+        WHERE teacher_id=#{teacher_id}
+    </delete>
+
+    <!--修改老师信息-->
+    <update id="setOne" parameterType="teacher">
+        UPDATE teacher
+        SET teacher_name=#{teacher_name}
+        WHERE teacher_id=#{teacher_id}
+    </update>
+
+    <!--查询单个老师信息-->
+    <select id="getOne" parameterType="teacher" resultType="teacher">
+        SELECT * FROM teacher
+        <where>
+            <if test="teacher_id!=null">
+                and teacher_id=#{teacher_id}
+            </if>
+            <if test="teacher_name!=null">
+                and teacher_name=#{teacher_name}
+            </if>
+        </where>
+    </select>
+    
+    <!--查询老师信息-->
+    <select id="getMoreThanOne" parameterType="teacher" resultMap="teacherMapper">
+        SELECT *
+        FROM teacher t1,course c1
+        <where>
+            <if test="teacher_id!=null">
+                and t1.teacher_id=#{teacher_id}
+            </if>
+            <if test="teacher_name!=null">
+                and t1.teacher_name=#{teacher_name}
+            </if>
+            <if test="1==1">
+                and t1.teacher_id=c1.teacher_id
+            </if>
+        </where>
+    </select>
+
+</mapper>

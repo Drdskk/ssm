@@ -17,8 +17,8 @@ public class ClazzTest {
     private ClazzService clazzService;
 
     @Test
-    public void clazzFindAll(){
-        List<Clazz> clazzList=clazzService.findAll();
+    public void clazzGetAll(){
+        List<Clazz> clazzList=clazzService.getAll();
         for(Clazz clazz:clazzList){
             System.out.println("id:"+clazz.getClazz_id()+","+"name："+clazz.getClazz_name());
         }

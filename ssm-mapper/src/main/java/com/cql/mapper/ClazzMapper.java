@@ -5,5 +5,5 @@ import com.cql.entity.Clazz;
 import java.util.List;
 
 public interface ClazzMapper {
-    public List<Clazz> findAll();
+    public List<Clazz> getAll();
 }
